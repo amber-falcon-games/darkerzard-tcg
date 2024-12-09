@@ -32,7 +32,6 @@ coverage/
 *.log
 
 # IDE/Editor-specific files
-.vscode/
 .idea/
 *.iml
 
