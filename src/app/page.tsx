@@ -1,18 +1,12 @@
 "use client"
 
-import { getRandomCards } from "@/temp/database"
 import { memo, useState } from "react"
-
-type CardProps = {
-  name: string
-}
-
-const Card = ({ name }: CardProps) => (
-  <p>{name}</p>
-)
+import { getRandomCards } from "@/temp/database"
+import { Card } from "@/cards/Card"
+import CardView from "@/cards/CardView"
 
 type CollectionProps = {
-  cards: string[]
+  cards: Card[]
 }
 
 const Collection = ({ cards }: CollectionProps) => {
@@ -22,14 +16,14 @@ const Collection = ({ cards }: CollectionProps) => {
   }
 
   return (
-    <>
-      {cards.map((cardName) => <Card key={cardName} name={cardName} />)}
-    </>
+    <div className="flex flex-nowrap">
+      {cards.map((card) => <CardView key={card.name} card={card} />)}
+    </div>
   )
 }
 
 const Home = () => {
-  const [cards, setCards] = useState<string[]>([])
+  const [cards, setCards] = useState<Card[]>([])
   const [openingPack, setOpeningPack] = useState(false)
 
   const openPack = () => {
